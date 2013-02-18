@@ -7,7 +7,7 @@ import numpy as np
 cutoff_length = 10
 
 # Import columns 2:4 (python indexes from 0) from FHI-aims input file
-lattice_vectors = np.genfromtxt('geometry.in',skip_header=1,usecols=(1,2,3))
+lattice_vectors = np.genfromtxt('geometry.in',skip_header=0, comments='#',usecols=(1,2,3))
 # Truncate to top 3 rows
 lattice_vectors = lattice_vectors[0:3,:]
 
