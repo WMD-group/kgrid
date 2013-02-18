@@ -12,6 +12,9 @@ a_string = f.readline()
 b_string = f.readline()
 c_string = f.readline()
 
+# Close file
+f.close
+
 # Convert to numpy vectors and concatenate
 a_vect = np.array([float(x) for x in a_string.split])
 b_vect = np.array([float(x) for x in b_string.split])
