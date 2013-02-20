@@ -1,21 +1,21 @@
 kgrid
 =====
 
-Generates a suitably converged k-point grid for solid-state quantum chemical calculations.
+Generates a suitably converged **k**-point grid for solid-state quantum chemical calculations.
 
 Current status
 --------------
 
 * Acts on FHI-aims geometry.in file in the working directory
-* Target length cutoff of 10AA is coded into program
-* A k-point density is selected to satisfy this length cutoff, as described by Moreno & Soler (1992)[1]
-* Returns the k-point grid to standard output
+* Target length cutoff of 10Å is coded into program
+* A **k**-point density is selected to satisfy this length cutoff, as described by Moreno & Soler (1992)[1]
+* Returns the **k**-point grid to standard output
 
 Short-term goals
 ----------------
 
 * Take input file and length cutoff as optional arguments
-* Default to working directory and 10AA (generally well-converged for semiconducting or insulating materials)
+* Default to working directory and 10Å (generally well-converged for semiconducting or insulating materials)
 * Support for VASP (delegated to Lee Burton)
 
 Long-term goals
