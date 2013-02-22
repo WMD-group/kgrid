@@ -3,11 +3,22 @@
 """Get k-grid parameters for desired length cutoff and input geometry"""
 
 import numpy as np
+from optparse import OptionParser
 
-cutoff_length = 10
+parser = OptionParser()
+parser.add_option("-c", "--cutoff-length",
+                  action="store", type="float", dest="cutoff_length", default=10.0,
+                  help="Set length cutoff in Angstroms [default: 10]")
+parser.add_option("-f", "--file",
+                  action="store", type="string", dest="file", default="geometry.in",
+                  help="Path to input file [default: ./geometry.in]")
+# Add further options here
+(options, args) = parser.parse_args()
+
+cutoff_length = options.cutoff_length
 
 # Import columns 2:4 (python indexes from 0) from FHI-aims input file
-lattice_vectors = np.genfromtxt('geometry.in',skip_header=0, comments='#',usecols=(1,2,3))
+lattice_vectors = np.genfromtxt(options.file,skip_header=0, comments='#',usecols=(1,2,3))
 # Truncate to top 3 rows
 lattice_vectors = lattice_vectors[0:3,:]
 
