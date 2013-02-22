@@ -7,20 +7,20 @@ quantum chemical calculations.
 Current status
 --------------
 
-* Acts on FHI-aims geometry.in file in the working directory
-* A **k**-point density is selected to satisfy this length cutoff, as
+* Reads FHI-aims geometry.in file from working directory or specified file
+* A **k**-point density is selected to satisfy a given length cutoff, as
   described by Moreno & Soler (1992)[1]
 * This **k**-point grid is expressed as a number of samples in each
   lattice vector and passed to standard output
-* Implements optional arguments according to conventional GNU/POSIX
-  syntax, including -h help option
 * Defaults to working directory and 10Å (generally well-converged for
   semiconducting or insulating materials)
+* Optional arguments are implemented with conventional GNU/POSIX
+  syntax, including -h help option
 
 Short-term goals
 ----------------
 
-* Take input file and length cutoff as optional arguments
+* Robust type-checking and error-handling
 * Support for VASP (delegated to Lee Burton)
 
 Long-term goals
