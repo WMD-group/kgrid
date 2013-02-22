@@ -8,16 +8,12 @@ Current status
 --------------
 
 * Acts on FHI-aims geometry.in file in the working directory
-
 * A **k**-point density is selected to satisfy this length cutoff, as
   described by Moreno & Soler (1992)[1]
-
 * This **k**-point grid is expressed as a number of samples in each
   lattice vector and passed to standard output
-
 * Implements optional arguments according to conventional GNU/POSIX
   syntax, including -h help option
-
 * Defaults to working directory and 10Å (generally well-converged for
   semiconducting or insulating materials)
 
@@ -25,14 +21,13 @@ Short-term goals
 ----------------
 
 * Take input file and length cutoff as optional arguments
-
 * Support for VASP (delegated to Lee Burton)
 
 Long-term goals
 ---------------
 
 * Generate suitable input files directly
-    * This may involve integrating this script into a larger, more general program
+    * May involve integrating this script into a larger, more general program
 
 Disclaimer
 ----------
