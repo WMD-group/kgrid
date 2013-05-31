@@ -32,7 +32,7 @@ Long-term goals
 Disclaimer
 ----------
 
-This program is not affiliated with FHI-aims. You are welcome to use it and build on it, but do so at your own risk.
+This program is not affiliated with FHI-aims. This program is made available under the GNU General Public License; you are free to modify and use the code, but do so at your own risk.
 
 References
 ----------
