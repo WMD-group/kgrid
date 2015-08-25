@@ -21,6 +21,7 @@
 
 import numpy as np
 from optparse import OptionParser
+import ase.io
 
 parser = OptionParser()
 parser.add_option("-c", "--cutoff-length",
@@ -29,13 +30,20 @@ parser.add_option("-c", "--cutoff-length",
 parser.add_option("-f", "--file",
                   action="store", type="string", dest="file", default="geometry.in",
                   help="Path to input file [default: ./geometry.in]")
+parser.add_option("-t", "--type", action="store", type="string", default=False,
+                  help="Input file type. If not provided, ASE will guess.")
 # Add further options here
 (options, args) = parser.parse_args()
 
 cutoff_length = options.cutoff_length
 
+if options.type:
+    atoms = ase.io.read(options.file, format=options.type)
+else:
+    atoms = ase.io.read(options.file)
+
 # Import columns 2:4 (python indexes from 0) from FHI-aims input file
-lattice_vectors = np.genfromtxt(options.file,skip_header=0, comments='#',usecols=(1,2,3))
+lattice_vectors = atoms.cell
 # Truncate to top 3 rows
 lattice_vectors = lattice_vectors[0:3,:]
 
