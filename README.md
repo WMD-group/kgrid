@@ -7,7 +7,7 @@ quantum chemical calculations.
 Current status
 --------------
 
-* Reads specified input file using Atomic Simulation Environment ([https://wiki.fysik.dtu.dk/ase/ase/io.html#module-ase.io](supported formats))
+* Reads specified input file using Atomic Simulation Environment ([supported formats](https://wiki.fysik.dtu.dk/ase/ase/io.html#module-ase.io))
   * If none is specified, looks for geometry.in (FHI-aims) in working directory
 * A **k**-point density is selected to satisfy a given length cutoff, as
   described by Moreno & Soler (1992)[1]
