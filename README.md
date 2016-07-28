@@ -10,7 +10,7 @@ Current status
 * Reads specified input file using Atomic Simulation Environment ([supported formats](https://wiki.fysik.dtu.dk/ase/ase/io.html#module-ase.io))
   * If none is specified, looks for geometry.in (FHI-aims) in working directory
 * A **k**-point density is selected to satisfy a given length cutoff, as
-  described by Moreno & Soler (1992)[1]
+  described by Moreno & Soler (1992)[1]. The length cutoff corresponds to the length between repeated images that would be needed in a supercell calculation to achieve the same sampling.
 * This **k**-point grid is expressed as a number of samples in each
   lattice vector and passed to standard output
 * Default **k**-point cutoff is 10Å (generally well-converged for
