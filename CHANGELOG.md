@@ -32,5 +32,5 @@ The changelog format is inspired by [keep-a-changelog](https://github.com/olivie
 - Optparse-based interface
 - GPL
 
-[Unreleased]: http://github.com/wmd-group/kgrid/compare/v0.2...HEAD
-[0.2]: http://github.com/wmd-group/kgrid/compare/v0.1...v0.2
+[Unreleased]: https://github.com/wmd-group/kgrid/compare/v0.2...HEAD
+[0.2]: https://github.com/wmd-group/kgrid/compare/v0.1...v0.2
