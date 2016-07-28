@@ -25,6 +25,48 @@ Requirements
 * [Atomic Simulation Environment](https://wiki.fysik.dtu.dk/ase) (ASE)
 * [Numpy](www.numpy.org) (Also a requirement for ASE.)
 
+Usage
+-----
+
+From the command line
+
+```
+    kgrid.py -f FILE -t TYPE -c CUTOFF
+```
+
+will return a suggested set of mesh dimensions. FILE can be any
+[file format supported by ASE](https://wiki.fysik.dtu.dk/ase/ase/io/io.html);
+if no FILE is specified, **kgrid** will look for a *geometry.in* file in
+the current directory. TYPE is a string specifying the format of this
+file; usually this argument can be left out and the correct type will
+be inferred by ASE. CUTOFF is the real-space cutoff parameter in Å and
+defaults to 10.0.
+
+There is an internal Python function which may prove useful to ASE users, with the form
+```
+kgrid.calc_kpt_tuple(atoms, cutoff_length=10)
+```
+
+where `atoms` is an ASE atoms object and the function returns a
+tuple. As such, **kgrid** may be used while setting up a calculation
+with a typical ASE calculator. For example:
+
+```
+import kgrid
+from ase.io import read
+from ase.calculators.vasp import Vasp
+
+atoms = read('my_favourite_structure.cif')
+calc = Vasp(xc='PBE',
+            kpts=kgrid.calc_kpt_tuple(atoms))
+atoms.set_calculator(calc)
+atoms.get_total_energy()
+```
+
+would perform a VASP calculation in the current directory with the PBE
+functional, using **kgrid** to determine the reciprocal-space sampling.
+
+
 Disclaimer
 ----------
 

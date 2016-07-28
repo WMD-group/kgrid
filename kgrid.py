@@ -30,6 +30,17 @@ def calc_grid(cutoff_length, filename='geometry.in', filetype=False, pretty_prin
     else:
         atoms = ase.io.read(filename)
 
+    k_samples = calc_kpt_tuple(atoms, cutoff_length=cutoff_length)
+
+    # Print vectors
+    if pretty_print:
+        print '{0:3.0f} {1:3.0f} {2:3.0f}'.format(*k_samples)
+    else:
+        return k_samples
+
+def calc_kpt_tuple(atoms, cutoff_length=10):
+    """Calculate Moreno-Soler k-point grid for ASE atoms object and given real-space cutoff"""
+
     # Import lattice vectors using ASE
     lattice_vectors = atoms.cell
 
@@ -40,16 +51,7 @@ def calc_grid(cutoff_length, filename='geometry.in', filetype=False, pretty_prin
     k_samples = np.divide(2*cutoff_length,abc)
     # Round up
     k_samples = np.ceil(k_samples)
-
-    #### NOTE: For some schemes it is preferred to only use odd or even numbers of
-    #### k-points. This is unlikely to be necessary in FHI-aims as the Gamma point
-    #### is always included. For VASP however this may be worth considering.
-
-    # Print vectors
-    if pretty_print:
-        print '{0:3.0f} {1:3.0f} {2:3.0f}'.format(k_samples[0],k_samples[1],k_samples[2])
-    else:
-        return k_samples
+    return tuple(k_samples)
 
 
 if __name__ == '__main__':
