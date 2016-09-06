@@ -9,10 +9,15 @@ Current status
 
 * Reads specified input file using Atomic Simulation Environment ([supported formats](https://wiki.fysik.dtu.dk/ase/ase/io.html#module-ase.io))
   * If none is specified, looks for geometry.in (FHI-aims) in working directory
-* A **k**-point density is selected to satisfy a given length cutoff, as
-  described by Moreno & Soler (1992)[1]. The length cutoff corresponds to the length between repeated images that would be needed in a supercell calculation to achieve the same sampling.
+* A **k**-point density is selected to satisfy a given length cutoff,
+  as described by Moreno & Soler (1992)[1]. The length cutoff
+  corresponds to a radius about repeated images that would be needed
+  in a gamma-point supercell calculation to achieve the same sampling.
 * This **k**-point grid is expressed as a number of samples in each
-  lattice vector and passed to standard output
+  lattice vector and passed to standard output. (Note that this is NOT
+  a Moreno-Soler grid as it does not use symmetry information to
+  minimise the required number of points. It is a uniform grid
+  specified with the same length parameter notation.)
 * Default **k**-point cutoff is 10Å (generally well-converged for
   semiconducting or insulating materials)
 * Optional arguments are implemented with conventional GNU/POSIX
