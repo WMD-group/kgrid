@@ -13,7 +13,10 @@ expected to be especially active and follows a simplified Semantic Versioning:
 The changelog format is inspired by [keep-a-changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased]
-
+- Correctly calculate reciprocal lattice vectors using whole
+  cell. This is the new default behaviour. Former behaviour ("naive"
+  apprach using only lengths of real-space cell) made available as
+  option through Python interface and CLI.
 
 ## [0.2] - 2016-07-28
 
