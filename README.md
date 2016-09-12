@@ -36,7 +36,7 @@ Usage
 From the command line
 
 ```
-    kgrid.py -f FILE -t TYPE -c CUTOFF
+    kgrid -f FILE -t TYPE -c CUTOFF
 ```
 
 will return a suggested set of mesh dimensions. FILE can be any
@@ -71,6 +71,20 @@ atoms.get_total_energy()
 would perform a VASP calculation in the current directory with the PBE
 functional, using **kgrid** to determine the reciprocal-space sampling.
 
+Installation
+------------
+
+**kgrid** uses setuptools; from a reasonable healthy Python environment you can use
+
+    pip install .
+    
+with the usual pip caveats: 
+
+- the `--user` flag is highly recommended and avoids the need for administrator privileges, but on a somewhat unhealthy Python installation the user packages location may not be on your paths yet.
+- the `-e` flag creates an "editable" installation which links to this repository and enables easy updates with git.
+
+**kgrid** is not tested on Windows but no problems are anticipated; the Anaconda Python distribution includes pip.
+On Mac OSX, the system Python does not include pip but there are various ways of getting a more complete distribution such as Homebrew or Anaconda.
 
 Disclaimer
 ----------
