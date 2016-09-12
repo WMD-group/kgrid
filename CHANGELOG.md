@@ -17,6 +17,7 @@ The changelog format is inspired by [keep-a-changelog](https://github.com/olivie
   cell. This is the new default behaviour. Former behaviour ("naive"
   apprach using only lengths of real-space cell) made available as
   option through Python interface and CLI.
+- Add emulation of VASP Auto and KSPACING modes.
 
 ## [0.2] - 2016-07-28
 
