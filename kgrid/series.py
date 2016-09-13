@@ -39,33 +39,44 @@ def get_increments(lattice_lengths):
     return tuple([1. / (2 * a) for a in lattice_lengths])
 
 
-def cutoff_series(l0, l_min, l_max):
+def cutoff_series(atoms, l_min, l_max, decimals=4):
     """Find multiples of l0 members within a range
 
-    :param l0: Vector of three length increments
-    :type 3-tuple
+    :param atoms: Crystal structure
+    :type ase.atoms.Atoms
     :param l_min: Minimum real-space cutoff
     :type float
     :param l_max: Maximum real-space cutoff
     :type float
+    :param decimals: Number of decimal places used when rounding to remove
+        duplicates
+    :type int
 
     :returns: Sorted list of cutoffs
     :rtype: list
 """
+    recip_cell = atoms.get_reciprocal_cell()
+    lattice_lengths = np.sqrt(np.sum(np.square(recip_cell), 1))
+
+    l0 = get_increments(lattice_lengths)
+
     members = set()
     for li in l0:
         n_min = np.ceil(l_min / li)
-        members.update(set(np.arange(n_min * li, l_max, li)))
+        members.update(
+            set(np.around(
+                np.arange(n_min * li, l_max, li), decimals=4)))
     return sorted(members)
 
-def kspacing_series(l0, l_min, l_max):
+
+def kspacing_series(atoms, l_min, l_max, decimals=4):
     """Find series of KSPACING values with different results
 
     NB: It is strongly recommended to ADD a small delta to these values
     to account for truncation/rounding errors
 
-    :param l0: Vector of three length increments
-    :type 3-tuple
+    :param atoms: Crystal structure
+    :type ase.atoms.Atoms
     :param l_min: Minimum real-space cutoff
     :type float
     :param l_max: Maximum real-space cutoff
@@ -74,7 +85,9 @@ def kspacing_series(l0, l_min, l_max):
     :returns: Sorted list of KSPACING values
     :rtype: list
     """
-    return [np.pi / c for c in cutoff_series(l0, l_min, l_max)]
+
+    return [np.pi / c for c in cutoff_series(atoms, l_min, l_max, decimals=4)]
+
 
 def main():
     parser = ArgumentParser("Calculate a systematic series of k-point samples")
@@ -89,8 +102,7 @@ def main():
         '--type',
         type=str,
         default=None,
-        help='Format of crystal structure file'
-        )
+        help='Format of crystal structure file')
     parser.add_argument(
         '--min',
         type=float,
@@ -104,15 +116,12 @@ def main():
 
     args = parser.parse_args()
 
-    if args.type:        
+    if args.type:
         atoms = ase.io.read(args.file, format=args.type)
     else:
         atoms = ase.io.read(args.file)
-    recip_cell = atoms.get_reciprocal_cell()
-    lattice_lengths = np.sqrt(np.sum(np.square(recip_cell), 1))
 
-    l0 = get_increments(lattice_lengths)
-    cutoffs = cutoff_series(l0, args.min, args.max)
+    cutoffs = cutoff_series(atoms, args.min, args.max)
 
     kspacing = [np.pi / c for c in cutoffs]
 
