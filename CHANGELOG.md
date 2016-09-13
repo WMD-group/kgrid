@@ -20,6 +20,7 @@ The changelog format is inspired by [keep-a-changelog](https://github.com/olivie
 - Add emulation of VASP Auto and KSPACING modes.
 - Restructure for packaging with setuptools
 - Installation instructions in README
+- Add range generator for convergence testing
 
 ## [0.2] - 2016-07-28
 

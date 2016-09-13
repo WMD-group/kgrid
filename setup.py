@@ -37,6 +37,7 @@ understand and plan calculations with codes that do.
     entry_points={
         'console_scripts': [
             'kgrid = kgrid.cli:main',
+            'kgrid-series = kgrid.series:main'
             ]
         }    
     )
