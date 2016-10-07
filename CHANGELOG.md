@@ -14,6 +14,20 @@ The changelog format is inspired by [keep-a-changelog](https://github.com/olivie
 
 ## [Unreleased]
 
+## [1.0] - 2016-10-07
+
+### Changed
+- Correctly calculate reciprocal lattice vectors using whole
+  cell. This is the new default behaviour. Former behaviour ("naive"
+  apprach using only lengths of real-space cell) made available as
+  option through Python interface and CLI.
+- Restructure repository for packaging with setuptools
+- Installation instructions in README
+
+### Added
+- New emulation of VASP Auto and KSPACING modes.
+- Setuptools installation
+- New range generator for convergence testing: **kgrid-series**
 
 ## [0.2] - 2016-07-28
 
@@ -32,5 +46,6 @@ The changelog format is inspired by [keep-a-changelog](https://github.com/olivie
 - Optparse-based interface
 - GPL
 
-[Unreleased]: https://github.com/wmd-group/kgrid/compare/v0.2...HEAD
+[Unreleased]: https://github.com/wmd-group/kgrid/compare/v1.0...HEAD
+[1.0]: https://github.com/wmd-group/kgrid/compare/v0.2...v1.0
 [0.2]: https://github.com/wmd-group/kgrid/compare/v0.1...v0.2
