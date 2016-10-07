@@ -91,7 +91,7 @@ kgrid-series -file FILE -t TYPE --min MIN --max MAX
 
 Example output:
 
-``` python
+``` bash
 Length cutoff  KSPACING    Samples
 -------------  --------  ------------
       10.630    0.2956     2   7   4
