@@ -65,7 +65,7 @@ def cutoff_series(atoms, l_min, l_max, decimals=4):
         n_min = np.ceil(l_min / li)
         members.update(
             set(np.around(
-                np.arange(n_min * li, l_max, li), decimals=4)))
+                np.arange(n_min * li, l_max, li), decimals=decimals)))
     return sorted(members)
 
 
@@ -86,7 +86,8 @@ def kspacing_series(atoms, l_min, l_max, decimals=4):
     :rtype: list
     """
 
-    return [np.pi / c for c in cutoff_series(atoms, l_min, l_max, decimals=4)]
+    return [np.pi / c for c in
+                cutoff_series(atoms, l_min, l_max, decimals=decimals)]
 
 
 def main():
