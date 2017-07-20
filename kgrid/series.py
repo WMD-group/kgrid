@@ -87,7 +87,7 @@ def kspacing_series(atoms, l_min, l_max, decimals=4):
     """
 
     return [np.pi / c for c in
-                cutoff_series(atoms, l_min, l_max, decimals=decimals)]
+            cutoff_series(atoms, l_min, l_max, decimals=decimals)]
 
 
 def main():
@@ -129,12 +129,12 @@ def main():
     samples = [calc_kpt_tuple(
         atoms, cutoff_length=(cutoff - 1e-4)) for cutoff in cutoffs]
 
-    print "Length cutoff  KSPACING    Samples"
-    print "-------------  --------  ------------"
+    print("Length cutoff  KSPACING    Samples")
+    print("-------------  --------  ------------")
 
     fstring = "{0:12.3f}   {1:7.4f}   {2:3d} {3:3d} {4:3d}"
     for cutoff, s, sample in zip(cutoffs, kspacing, samples):
-        print fstring.format(cutoff, s, *sample)
+        print(fstring.format(cutoff, s, *sample))
 
 
 if __name__ == '__main__':
