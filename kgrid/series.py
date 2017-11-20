@@ -16,13 +16,13 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ###############################################################################
+from __future__ import print_function
+
 import ase.io
 import numpy as np
 
 from argparse import ArgumentParser
-
 from kgrid import calc_kpt_tuple
-
 
 def get_increments(lattice_lengths):
     """
@@ -114,6 +114,8 @@ def main():
         type=float,
         default=30,
         help='Maximum real-space cutoff / angstroms')
+    parser.add_argument('--comma_sep', action='store_true',
+                        help='Output as comma-separated list on one line')
 
     args = parser.parse_args()
 
@@ -129,12 +131,19 @@ def main():
     samples = [calc_kpt_tuple(
         atoms, cutoff_length=(cutoff - 1e-4)) for cutoff in cutoffs]
 
-    print("Length cutoff  KSPACING    Samples")
-    print("-------------  --------  ------------")
+    if args.comma_sep:
+        def print_sample(sample):
+            return ' '.join((str(x) for x in sample))
 
-    fstring = "{0:12.3f}   {1:7.4f}   {2:3d} {3:3d} {4:3d}"
-    for cutoff, s, sample in zip(cutoffs, kspacing, samples):
-        print(fstring.format(cutoff, s, *sample))
+        print(','.join((print_sample(sample) for sample in samples)))
+
+    else:
+        print("Length cutoff  KSPACING    Samples")
+        print("-------------  --------  ------------")
+
+        fstring = "{0:12.3f}   {1:7.4f}   {2:3d} {3:3d} {4:3d}"
+        for cutoff, s, sample in zip(cutoffs, kspacing, samples):
+            print(fstring.format(cutoff, s, *sample))
 
 
 if __name__ == '__main__':
