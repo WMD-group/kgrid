@@ -93,11 +93,20 @@ def kspacing_series(atoms, l_min, l_max, decimals=4):
 def main():
     parser = ArgumentParser("Calculate a systematic series of k-point samples")
     parser.add_argument(
-        '-f',
-        '--file',
+        "structure",
         type=str,
-        default='geometry.in',
-        help='Crystal structure file')
+        help="Path to input file",
+        nargs='?',
+        default=None
+        )
+    parser.add_argument(
+        "-f",
+        "--file",
+        action="store",
+        type=str,
+        dest="file",
+        default="geometry.in",
+        help="Path to input file [default: ./geometry.in]")    
     parser.add_argument(
         '-t',
         '--type',
@@ -117,10 +126,15 @@ def main():
 
     args = parser.parse_args()
 
-    if args.type:
-        atoms = ase.io.read(args.file, format=args.type)
+    if args.structure is None:
+        filename = args.file
     else:
-        atoms = ase.io.read(args.file)
+        filename = args.structure        
+
+    if args.type:
+        atoms = ase.io.read(filename, format=args.type)
+    else:
+        atoms = ase.io.read(filename)
 
     cutoffs = cutoff_series(atoms, args.min, args.max)
 

@@ -45,6 +45,21 @@ def calc_grid(cutoff_length,
 
 def main():
     parser = ArgumentParser()
+    parser.add_argument(
+        "structure",
+        type=str,
+        help="Path to input file",
+        nargs='?',
+        default=None
+        )
+    parser.add_argument(
+        "-f",
+        "--file",
+        action="store",
+        type=str,
+        dest="file",
+        default="geometry.in",
+        help="Path to input file [default: ./geometry.in]")    
     threshold = parser.add_mutually_exclusive_group()
     threshold.add_argument(
         "-c",
@@ -68,15 +83,6 @@ def main():
         type=float,
         dest="kspacing",
         help="Reciprocal space distance like KSPACING in VASP")
-
-    parser.add_argument(
-        "-f",
-        "--file",
-        action="store",
-        type=str,
-        dest="file",
-        default="geometry.in",
-        help="Path to input file [default: ./geometry.in]")
     parser.add_argument(
         "-t",
         "--type",
@@ -103,10 +109,15 @@ def main():
         mode = 'default'
         cutoff = args.cutoff_length
 
+    if args.structure is None:
+        filename = args.file
+    else:
+        filename = args.structure        
+
     calc_grid(
         cutoff,
         mode=mode,
-        filename=args.file,
+        filename=filename,
         filetype=args.type,
         realspace=args.realspace,
         pretty_print=True)
