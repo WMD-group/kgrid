@@ -16,11 +16,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ###############################################################################
 
+from __future__ import print_function
 import ase.io
 from argparse import ArgumentParser
 from kgrid import calc_kpt_tuple
-
-
 
 def calc_grid(cutoff_length,
               mode='default',
@@ -39,7 +38,7 @@ def calc_grid(cutoff_length,
 
     # Print vectors
     if pretty_print:
-        print '{0:3.0f} {1:3.0f} {2:3.0f}'.format(*k_samples)
+        print('{0:3.0f} {1:3.0f} {2:3.0f}'.format(*k_samples))
     else:
         return k_samples
 
