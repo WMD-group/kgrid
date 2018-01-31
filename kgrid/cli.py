@@ -39,7 +39,7 @@ def calc_grid(cutoff_length,
 
     # Print vectors
     if pretty_print:
-        print '{0:3.0f} {1:3.0f} {2:3.0f}'.format(*k_samples)
+        print('{0:3.0f} {1:3.0f} {2:3.0f}'.format(*k_samples))
     else:
         return k_samples
 
