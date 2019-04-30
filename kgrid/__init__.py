@@ -51,6 +51,9 @@ def calc_kpt_tuple(atoms, cutoff_length=10, realspace=False, mode='default'):
     elif mode.lower() == 'kspacing':
         cutoff_length = np.pi / cutoff_length
         rounding = 'up'
+    elif mode.lower() == 'castep_mp_spacing':
+        cutoff_length = 1 / (2 * cutoff_length)
+        rounding = 'up'
 
     if realspace:
         return calc_kpt_tuple_naive(atoms, cutoff_length=cutoff_length,

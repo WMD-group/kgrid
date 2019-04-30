@@ -93,8 +93,8 @@ def kspacing_series(atoms, l_min, l_max, decimals=4):
 def main():
     parser = ArgumentParser("Calculate a systematic series of k-point samples")
     parser.add_argument(
-        '-f',
-        '--file',
+        'file',
+        nargs='?',
         type=str,
         default='geometry.in',
         help='Crystal structure file')
@@ -116,6 +116,9 @@ def main():
         help='Maximum real-space cutoff / angstroms')
     parser.add_argument('--comma_sep', action='store_true',
                         help='Output as comma-separated list on one line')
+    parser.add_argument('--castep', action='store_true',
+                        help=('Provide CASTEP-like MP spacing instead of '
+                              'vasp-like KSPACING'))
 
     args = parser.parse_args()
 
@@ -126,7 +129,10 @@ def main():
 
     cutoffs = cutoff_series(atoms, args.min, args.max)
 
-    kspacing = [np.pi / c for c in cutoffs]
+    if args.castep:
+        kspacing = [0.5 / c for c in cutoffs]
+    else:
+        kspacing = [np.pi / c for c in cutoffs]
 
     samples = [calc_kpt_tuple(
         atoms, cutoff_length=(cutoff - 1e-4)) for cutoff in cutoffs]
@@ -138,10 +144,15 @@ def main():
         print(','.join((print_sample(sample) for sample in samples)))
 
     else:
-        print("Length cutoff  KSPACING    Samples")
-        print("-------------  --------  ------------")
+        if args.castep:
+            print("Length cutoff  MP SPACING    Samples")
+            print("-------------  ----------  ------------")
+            fstring = "{0:12.3f}   {1:9.6f}   {2:3d} {3:3d} {4:3d}"
+        else:
+            print("Length cutoff  KSPACING    Samples")
+            print("-------------  --------  ------------")
+            fstring = "{0:12.3f}   {1:7.4f}   {2:3d} {3:3d} {4:3d}"
 
-        fstring = "{0:12.3f}   {1:7.4f}   {2:3d} {3:3d} {4:3d}"
         for cutoff, s, sample in zip(cutoffs, kspacing, samples):
             print(fstring.format(cutoff, s, *sample))
 

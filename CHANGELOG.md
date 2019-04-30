@@ -13,6 +13,8 @@ expected to be especially active and follows a simplified Semantic Versioning:
 The changelog format is inspired by [keep-a-changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased]
+- Make filename a positional argument; -f or --filename no longer needed
+- Add support for CASTEP-like reciprocal spacing cutoff (2 pi factor smaller than KSPACING)
 
 ## [1.0] - 2016-10-07
 

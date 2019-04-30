@@ -1,7 +1,7 @@
 kgrid
 =====
 
-Version 1.0: [Change log](./CHANGELOG.md)
+Version 1.1: [Change log](./CHANGELOG.md)
 
 Generates a suitably converged **k**-point grid for solid-state
 quantum chemical calculations.
@@ -37,7 +37,7 @@ Two programs are provided: kgrid and kgrid-series
 Requirements
 ------------
 
-* Developed with Python 2.7; not tested with other versions
+* Developed with Python 2.7 and Python 3.6
 * [Atomic Simulation Environment](https://wiki.fysik.dtu.dk/ase) (ASE)
 * [Numpy](www.numpy.org) (Also a requirement for ASE.)
 
@@ -48,7 +48,7 @@ Usage
 From the command line
 
 ``` bash
-    kgrid -f FILE -t TYPE -c CUTOFF
+    kgrid FILE -t TYPE -c CUTOFF
 ```
 
 will return a suggested set of mesh dimensions. FILE can be any
@@ -86,7 +86,7 @@ functional, using **kgrid** to determine the reciprocal-space sampling.
 ### kgrid-series
 
 ``` bash
-kgrid-series -file FILE -t TYPE --min MIN --max MAX
+kgrid-series FILE -t TYPE --min MIN --max MAX
 ```
 
 Example output:
@@ -121,7 +121,11 @@ Length cutoff  KSPACING    Samples
 
 ```
 
-Installation
+Use the `--castep` option to replace KSPACING with "MP SPACING", which
+corresponds to the *KPOINTS_MP_SPACING* parameter in CASTEP
+(i.e. divide by 2π).
+
+INSTALLATION
 ------------
 
 **kgrid** uses setuptools; from a reasonable healthy Python environment you can use
@@ -133,7 +137,7 @@ with the usual pip caveats:
 - the `--user` flag is highly recommended and avoids the need for administrator privileges, but on a somewhat unhealthy Python installation the user packages location may not be on your paths yet.
 - the `-e` flag creates an "editable" installation which links to this repository and enables easy updates with git.
 
-**kgrid** is not tested on Windows but no problems are anticipated; the Anaconda Python distribution includes pip.
+**kgrid** is not developed on Windows but no problems are anticipated; the Anaconda Python distribution includes pip. We have had good experiences using the Windows subsystem for Linux (WSL), available on Windows 10.
 On Mac OSX, the system Python does not include pip but there are various ways of getting a more complete distribution such as Homebrew or Anaconda.
 
 Disclaimer
