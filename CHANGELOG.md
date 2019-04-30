@@ -14,6 +14,19 @@ The changelog format is inspired by [keep-a-changelog](https://github.com/olivie
 
 ## [Unreleased]
 
+## [1.1] - 2018-04-30
+
+### Fixed
+- Python3 compatibility
+- Bug in decimal place tolerance option
+
+### Added
+- Comma-separated kgrid-series output option
+- CASTEP-like reciprocal spacing cutoff (2 pi factor smaller than KSPACING)
+
+### Changed
+- Make filename a positional argument; -f or --filename no longer needed
+
 ## [1.0] - 2016-10-07
 
 ### Changed
@@ -46,6 +59,7 @@ The changelog format is inspired by [keep-a-changelog](https://github.com/olivie
 - Optparse-based interface
 - GPL
 
-[Unreleased]: https://github.com/wmd-group/kgrid/compare/v1.0...HEAD
+[Unreleased]: https://github.com/wmd-group/kgrid/compare/v1.1...HEAD
+[1.1]: https://github.com/wmd-group/kgrid/compare/v1.0...v1.1
 [1.0]: https://github.com/wmd-group/kgrid/compare/v0.2...v1.0
 [0.2]: https://github.com/wmd-group/kgrid/compare/v0.1...v0.2

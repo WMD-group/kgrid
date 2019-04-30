@@ -46,20 +46,12 @@ def calc_grid(cutoff_length,
 def main():
     parser = ArgumentParser()
     parser.add_argument(
-        "structure",
-        type=str,
-        help="Path to input file",
-        nargs='?',
-        default=None
-        )
-    parser.add_argument(
-        "-f",
-        "--file",
         action="store",
+        nargs="?",
         type=str,
         dest="file",
         default="geometry.in",
-        help="Path to input file [default: ./geometry.in]")    
+        help="Path to input file [default: ./geometry.in]")
     threshold = parser.add_mutually_exclusive_group()
     threshold.add_argument(
         "-c",
@@ -82,7 +74,16 @@ def main():
         action="store",
         type=float,
         dest="kspacing",
-        help="Reciprocal space distance like KSPACING in VASP")
+        help="Reciprocal-space distance like KSPACING in VASP")
+    threshold.add_argument(
+        "--castep",
+        "--castep_spacing",
+        "--castep_mp_spacing",
+        action="store",
+        type=float,
+        dest="castep_mp_spacing",
+        help=("Reciprocal-space distance like KPOINTS_MP_SPACING in CASTEP; "
+              "this differs from Vasp-like KSPACING by factor of 1/(2 pi)."))
     parser.add_argument(
         "-t",
         "--type",
@@ -96,7 +97,7 @@ def main():
         action="store_true",
         help="Use real-space vector lengths instead of "
         "computing reciprocal cell; not recommended!")
-    # Add further options here
+
     args = parser.parse_args()
 
     if args.vasp_auto:
@@ -105,19 +106,17 @@ def main():
     elif args.kspacing:
         mode = 'kspacing'
         cutoff = args.kspacing
+    elif args.castep_mp_spacing:
+        mode = 'castep_mp_spacing'
+        cutoff = args.castep_mp_spacing
     else:
         mode = 'default'
         cutoff = args.cutoff_length
 
-    if args.structure is None:
-        filename = args.file
-    else:
-        filename = args.structure        
-
     calc_grid(
         cutoff,
         mode=mode,
-        filename=filename,
+        filename=args.file,
         filetype=args.type,
         realspace=args.realspace,
         pretty_print=True)

@@ -17,12 +17,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ###############################################################################
 from __future__ import print_function
-from argparse import ArgumentParser
+
 import numpy as np
+from argparse import ArgumentParser
 
 import ase.io
-from kgrid import calc_kpt_tuple
 
+from kgrid import calc_kpt_tuple
 
 def get_increments(lattice_lengths):
     """
@@ -93,18 +94,9 @@ def kspacing_series(atoms, l_min, l_max, decimals=4):
 def main():
     parser = ArgumentParser("Calculate a systematic series of k-point samples")
     parser.add_argument(
-        "structure",
-        type=str,
-        help="Path to input file",
+        'filename',
         nargs='?',
-        default=None
-        )
-    parser.add_argument(
-        "-f",
-        "--file",
-        action="store",
         type=str,
-        dest="file",
         default="geometry.in",
         help="Path to input file [default: ./geometry.in]")    
     parser.add_argument(
@@ -123,32 +115,47 @@ def main():
         type=float,
         default=30,
         help='Maximum real-space cutoff / angstroms')
+    parser.add_argument('--comma_sep', action='store_true',
+                        help='Output as comma-separated list on one line')
+    parser.add_argument('--castep', action='store_true',
+                        help=('Provide CASTEP-like MP spacing instead of '
+                              'vasp-like KSPACING'))
 
     args = parser.parse_args()
 
-    if args.structure is None:
-        filename = args.file
-    else:
-        filename = args.structure        
-
     if args.type:
-        atoms = ase.io.read(filename, format=args.type)
+        atoms = ase.io.read(args.filename, format=args.type)
     else:
-        atoms = ase.io.read(filename)
+        atoms = ase.io.read(args.filename)
 
     cutoffs = cutoff_series(atoms, args.min, args.max)
 
-    kspacing = [np.pi / c for c in cutoffs]
+    if args.castep:
+        kspacing = [0.5 / c for c in cutoffs]
+    else:
+        kspacing = [np.pi / c for c in cutoffs]
 
     samples = [calc_kpt_tuple(
         atoms, cutoff_length=(cutoff - 1e-4)) for cutoff in cutoffs]
 
-    print("Length cutoff  KSPACING    Samples")
-    print("-------------  --------  ------------")
+    if args.comma_sep:
+        def print_sample(sample):
+            return ' '.join((str(x) for x in sample))
 
-    fstring = "{0:12.3f}   {1:7.4f}   {2:3d} {3:3d} {4:3d}"
-    for cutoff, s, sample in zip(cutoffs, kspacing, samples):
-        print(fstring.format(cutoff, s, *sample))
+        print(','.join((print_sample(sample) for sample in samples)))
+
+    else:
+        if args.castep:
+            print("Length cutoff  MP SPACING    Samples")
+            print("-------------  ----------  ------------")
+            fstring = "{0:12.3f}   {1:9.6f}   {2:3d} {3:3d} {4:3d}"
+        else:
+            print("Length cutoff  KSPACING    Samples")
+            print("-------------  --------  ------------")
+            fstring = "{0:12.3f}   {1:7.4f}   {2:3d} {3:3d} {4:3d}"
+
+        for cutoff, s, sample in zip(cutoffs, kspacing, samples):
+            print(fstring.format(cutoff, s, *sample))
 
 
 if __name__ == '__main__':
