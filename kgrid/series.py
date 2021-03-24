@@ -55,7 +55,7 @@ def cutoff_series(atoms, l_min, l_max, decimals=4):
     :returns: Sorted list of cutoffs
     :rtype: list
 """
-    recip_cell = atoms.get_reciprocal_cell()
+    recip_cell = atoms.cell.reciprocal()
     lattice_lengths = np.sqrt(np.sum(np.square(recip_cell), 1))
 
     l0 = get_increments(lattice_lengths)
