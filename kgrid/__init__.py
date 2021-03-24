@@ -88,7 +88,7 @@ def calc_kpt_tuple_recip(atoms, cutoff_length=10, rounding='up'):
     # Get reciprocal lattice vectors with ASE. Note that ASE does NOT include
     # the 2*pi factor used in many definitions of these vectors; the underlying
     # method is just a matrix inversoin and transposition
-    recip_cell = atoms.get_reciprocal_cell()
+    recip_cell = atoms.cell.reciprocal()
 
     # Get reciprocal cell vector magnitudes according to Pythagoras' theorem
     abc_recip = np.sqrt(np.sum(np.square(recip_cell),1))
