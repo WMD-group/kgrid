@@ -33,7 +33,7 @@ understand and plan calculations with codes that do.
         ],
     keywords='chemistry physics k-point sampling reciprocal',
     packages=find_packages(exclude=['test']),
-    install_requires=['ase'],
+    install_requires=['ase>=3.18'],
     entry_points={
         'console_scripts': [
             'kgrid = kgrid.cli:main',
