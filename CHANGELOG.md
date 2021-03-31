@@ -13,7 +13,12 @@ expected to be especially active and follows a simplified Semantic Versioning:
 The changelog format is inspired by [keep-a-changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased]
+
+### Fixed
 - ASE > 3.21 compatibility, backwards-compatible to ASE 3.18.
+
+### Changed
+- Atoms method (`atoms.get_reciprocal_cell()`) replaced by Cell method (`atoms.cell.reciprocal()`).
 
 ## [1.1] - 2018-04-30
 
