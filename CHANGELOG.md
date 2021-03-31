@@ -13,6 +13,7 @@ expected to be especially active and follows a simplified Semantic Versioning:
 The changelog format is inspired by [keep-a-changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased]
+- ASE > 3.21 compatibility, backwards-compatible to ASE 3.18.
 
 ## [1.1] - 2018-04-30
 
