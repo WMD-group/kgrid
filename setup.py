@@ -9,7 +9,7 @@ project_dir = abspath(dirname(__file__))
 
 setup(
     name='kgrid',
-    version='1.0.0',
+    version='1.2.0',
     description='Reciprocal space sampling for crystal structures',
     long_description="""
 Generate reciprocal-space grids with scalar cutoff parameters and standard
@@ -27,13 +27,13 @@ understand and plan calculations with codes that do.
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Natural Language :: English',
-        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Scientific/Engineering :: Chemistry',
         'Topic :: Scientific/Engineering :: Physics'
         ],
     keywords='chemistry physics k-point sampling reciprocal',
     packages=find_packages(exclude=['test']),
-    python_requires='>=3.5',
+    python_requires='>=3.6',
     install_requires=['ase>=3.18'],
     entry_points={
         'console_scripts': [
