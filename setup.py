@@ -27,12 +27,13 @@ understand and plan calculations with codes that do.
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Natural Language :: English',
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.5',
         'Topic :: Scientific/Engineering :: Chemistry',
         'Topic :: Scientific/Engineering :: Physics'
         ],
     keywords='chemistry physics k-point sampling reciprocal',
     packages=find_packages(exclude=['test']),
+    python_requires='>=3.5',
     install_requires=['ase>=3.18'],
     entry_points={
         'console_scripts': [

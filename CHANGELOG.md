@@ -14,6 +14,11 @@ The changelog format is inspired by [keep-a-changelog](https://github.com/olivie
 
 ## [Unreleased]
 
+## [1.2] - 2021-04-01
+- ASE deprecation warning cleared
+- Minimum ASE version specified in setup.py
+- This also means dropping support for Python 2.7
+
 ### Fixed
 - ASE > 3.21 compatibility, backwards-compatible to ASE 3.18.
 
