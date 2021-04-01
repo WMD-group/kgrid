@@ -6,8 +6,6 @@ import ase.io
 import kgrid
 
 data_dir = pathlib.Path('test/data')
-
-
 sio2 = ase.io.read(data_dir / 'POSCAR')
 ga2o3 = ase.io.read(data_dir / 'geometry.in')
 
