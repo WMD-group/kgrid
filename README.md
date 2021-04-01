@@ -1,7 +1,7 @@
 kgrid
 =====
 
-Version 1.1: [Change log](./CHANGELOG.md)
+Version 1.2: [Change log](./CHANGELOG.md)
 
 Generates a suitably converged **k**-point grid for solid-state
 quantum chemical calculations.
@@ -37,9 +37,8 @@ Two programs are provided: kgrid and kgrid-series
 Requirements
 ------------
 
-* Developed with Python 2.7 and Python 3.6
-* [Atomic Simulation Environment](https://wiki.fysik.dtu.dk/ase) (ASE)
-* [Numpy](www.numpy.org) (Also a requirement for ASE.)
+* Python 3.6
+* [Atomic Simulation Environment](https://wiki.fysik.dtu.dk/ase) (ASE) version 3.18
 
 Usage
 -----
@@ -139,6 +138,13 @@ with the usual pip caveats:
 
 **kgrid** is not developed on Windows but no problems are anticipated; the Anaconda Python distribution includes pip. We have had good experiences using the Windows subsystem for Linux (WSL), available on Windows 10.
 On Mac OSX, the system Python does not include pip but there are various ways of getting a more complete distribution such as Homebrew or Anaconda.
+
+Testing
+-------
+
+To run the unit tests, install `pytest` and `pytest-mock` and run
+`pytest` from the project directory (i.e. the folder containing this
+README.)
 
 Disclaimer
 ----------
