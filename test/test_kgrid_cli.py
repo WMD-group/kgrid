@@ -38,21 +38,21 @@ def test_calc_grid_format(tmp_path):
                           (['the_cell_file', '--castep_spacing', '0.05',
                             '-t', 'castep'],
                            [0.05], {'filename': 'the_cell_file',
-                                  'mode': 'castep_mp_spacing',
-                                  'filetype': 'castep',
-                                  'realspace': False,
-                                  'pretty_print': True}),
+                                    'mode': 'castep_mp_spacing',
+                                    'filetype': 'castep',
+                                    'realspace': False,
+                                    'pretty_print': True}),
                           (['the_file', '-r'],
                            [10], {'filename': 'the_file',
                                   'mode': 'default',
                                   'filetype': False,
                                   'realspace': True,
                                   'pretty_print': True}),
-                                  ])
+                          ])
 def test_kgrid_main(mocker, args, expected_args, expected_kwargs):
     mocked_calc_grid = mocker.patch('kgrid.cli.calc_grid',
                                     return_value=None)
 
     kgrid.cli.main(params=args)
-    
+
     mocked_calc_grid.assert_called_with(*expected_args, **expected_kwargs)
