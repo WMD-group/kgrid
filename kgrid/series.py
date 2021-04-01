@@ -18,10 +18,11 @@
 ###############################################################################
 from __future__ import print_function
 
-import ase.io
 import numpy as np
-
 from argparse import ArgumentParser
+
+import ase.io
+
 from kgrid import calc_kpt_tuple
 
 def get_increments(lattice_lengths):
@@ -92,11 +93,11 @@ def kspacing_series(atoms, l_min, l_max, decimals=4):
 def get_parser():
     parser = ArgumentParser("Calculate a systematic series of k-point samples")
     parser.add_argument(
-        'file',
+        'filename',
         nargs='?',
         type=str,
-        default='geometry.in',
-        help='Crystal structure file')
+        default="geometry.in",
+        help="Path to input file [default: ./geometry.in]")    
     parser.add_argument(
         '-t',
         '--type',
@@ -124,9 +125,9 @@ def main(params=None):
     args = get_parser().parse_args(params)
 
     if args.type:
-        atoms = ase.io.read(args.file, format=args.type)
+        atoms = ase.io.read(args.filename, format=args.type)
     else:
-        atoms = ase.io.read(args.file)
+        atoms = ase.io.read(args.filename)
 
     cutoffs = cutoff_series(atoms, args.min, args.max)
 

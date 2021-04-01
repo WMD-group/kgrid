@@ -16,11 +16,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ###############################################################################
 
+from __future__ import print_function
 import ase.io
 from argparse import ArgumentParser
 from kgrid import calc_kpt_tuple
-
-
 
 def calc_grid(cutoff_length,
               mode='default',

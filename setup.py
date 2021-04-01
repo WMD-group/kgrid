@@ -10,18 +10,18 @@ project_dir = abspath(dirname(__file__))
 setup(
     name='kgrid',
     version='1.2.0',
-    description='Reciprocal space sampling for crystal structures',
+    description='Reciprocal space sampling for atomistic crystal structures',
     long_description="""
 Generate reciprocal-space grids with scalar cutoff parameters and standard
-crystal structure files. kgrid helps with k-point convergence problems when 
+crystal structure files. kgrid helps with k-point convergence problems when
 using ab initio codes that lack a single-parameter option, and help you
 understand and plan calculations with codes that do.
 """,
-    url="https://github.com/WMD-group/kgrid",
-    author="Adam J. Jackson / Walsh Materials Design group",
-    author_email="a.j.jackson@physics.org",
+    long_description_content_type='text/markdown',
+    url='https://github.com/WMD-group/kgrid',
+    author='Adam J. Jackson',
+    author_email='a.j.jackson@physics.org',
     license='GPL v3',
-
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Science/Research',
@@ -33,12 +33,12 @@ understand and plan calculations with codes that do.
         ],
     keywords='chemistry physics k-point sampling reciprocal',
     packages=find_packages(exclude=['test']),
-    python_requires='>=3.6',
+    python_requires='>=3.6, <4',
     install_requires=['ase>=3.18'],
     entry_points={
         'console_scripts': [
             'kgrid = kgrid.cli:main',
             'kgrid-series = kgrid.series:main'
             ]
-        }    
+        }
     )
