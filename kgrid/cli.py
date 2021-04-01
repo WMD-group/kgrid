@@ -44,7 +44,7 @@ def calc_grid(cutoff_length,
         return k_samples
 
 
-def main():
+def get_parser():
     parser = ArgumentParser()
     parser.add_argument(
         action="store",
@@ -99,7 +99,12 @@ def main():
         help="Use real-space vector lengths instead of "
         "computing reciprocal cell; not recommended!")
 
-    args = parser.parse_args()
+    return parser
+
+
+def main(params=None):
+    parser = get_parser()
+    args = parser.parse_args(params)
 
     if args.vasp_auto:
         mode = 'vasp_auto'
