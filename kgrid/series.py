@@ -54,7 +54,7 @@ def cutoff_series(atoms, l_min, l_max, decimals=4):
 
     :returns: Sorted list of cutoffs
     :rtype: list
-"""
+    """
     recip_cell = atoms.cell.reciprocal()
     lattice_lengths = np.sqrt(np.sum(np.square(recip_cell), 1))
 
@@ -89,8 +89,7 @@ def kspacing_series(atoms, l_min, l_max, decimals=4):
     return [np.pi / c for c in
             cutoff_series(atoms, l_min, l_max, decimals=decimals)]
 
-
-def main():
+def get_parser():
     parser = ArgumentParser("Calculate a systematic series of k-point samples")
     parser.add_argument(
         'file',
@@ -119,8 +118,10 @@ def main():
     parser.add_argument('--castep', action='store_true',
                         help=('Provide CASTEP-like MP spacing instead of '
                               'vasp-like KSPACING'))
+    return parser
 
-    args = parser.parse_args()
+def main(params=None):
+    args = get_parser().parse_args(params)
 
     if args.type:
         atoms = ase.io.read(args.file, format=args.type)
