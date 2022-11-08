@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Please consider citing this software as below"
+authors:
+- family-names: "Jackson"
+  given-names: "Adam James"
+  orcid: "https://orcid.org/0000-0001-5272-6530"
+title: "kgrid"
+version: 1.2.0
+date-released: 2021-04-01
+url: "https://github.com/wmd-group/kgrid"
